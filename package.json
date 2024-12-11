@@ -17,7 +17,7 @@
     "build.scripts": "node build/vite.ts",
     "build.ext": "web-ext build --source-dir ./addon -a dist/ -i __tests__",
     "build.run": "node build/webext.run.js",
-    "build": "node build/all.vite.js",
+    "build": "NODE_OPTIONS=\"--import tsx\" node build/all.vite.js",
     "clear.npm": "rm -rf node_modules package-lock.json",
     "clear": "rm -rf addon",
     "lint.eslint": "eslint ./src",
@@ -50,10 +50,19 @@
     "vite": "8.3.0",
     "vitest": "5.0.1",
     "vue-tsc": "3.3.11",
-    "web-ext": "10.6.0"
+    "web-ext": "10.6.0",
+    "tsx": "4.23.13",
+    "glob": "13.0.6",
+    "encoding-sniffer": "1.0.2"
   },
   "dependencies": {
-    "vue": "3.5.42"
+    "vue": "3.5.43"
+  },
+  "overrides": {
+    "eslint": "10.10.0",
+    "glob": "13.0.6",
+    "encoding-sniffer": "1.0.2",
+    "image-size": "2.0.4"
   },
   "prettier": {
     "arrowParens": "avoid",
@@ -70,5 +79,8 @@
   "browserslist": [
     "Firefox >= 153"
   ],
-  "sideEffects": false
+  "sideEffects": false,
+  "allowScripts": {
+    "esbuild@0.28.2": true
+  }
 }
