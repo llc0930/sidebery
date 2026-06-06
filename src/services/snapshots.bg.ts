@@ -529,7 +529,12 @@ function limitSnapshots(snapshots: Snapshot[]): Snapshot[] | undefined {
   if (normSnapshot) snapshots[index] = normSnapshot
   else return
 
-  return snapshots.slice(index)
+  if (index === 0) return snapshots.slice(index)
+
+  const latestFiltered = snapshots.slice(index)
+  const oldestSnapshot = snapshots[0]
+  if (oldestSnapshot) return [oldestSnapshot, ...latestFiltered]
+  return latestFiltered
 }
 
 export async function removeSnapshot(id: ID): Promise<RemovingSnapshotResult> {
